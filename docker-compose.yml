@@ -12,6 +12,7 @@ services:
       - CONTENT_MODEL=microsoft/phi-2
       - CODE_MODEL=Xenova/distilgpt2
       - CACHE_DIR=/app/model_cache
+      - TRANSFORMERS_CACHE=/app/model_cache
     depends_on:
       db:
         condition: service_healthy
@@ -26,17 +27,30 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=meirman_is_creator
-      - POSTGRES_PASSWORD=password123  # Указываем явный непустой пароль
-      - POSTGRES_DB=icreator
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres  # Основной пользователь postgres
+      - POSTGRES_DB=postgres
     ports:
       - "5432:5432"
     restart: always
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U meirman_is_creator"]
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
+
+  db_setup:
+    build:
+      context: .
+    volumes:
+      - ./db_setup.sh:/app/db_setup.sh
+    entrypoint: ["/bin/bash", "/app/db_setup.sh"]
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    restart: "no"
 
 volumes:
   postgres_data:

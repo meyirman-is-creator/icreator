@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Настройки базы данных
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://meirman_is_creator:password@localhost/icreator")
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://meirman_is_creator:password123@db/icreator")
 
 # Настройки моделей - используем открытые модели без ограничений доступа
 CONTENT_MODEL = os.getenv("CONTENT_MODEL", "microsoft/phi-2")  # Открытая модель для контента

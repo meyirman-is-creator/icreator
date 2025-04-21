@@ -1,15 +1,88 @@
 web-1  | There was a problem when trying to write in your cache folder (/home/appuser/.cache/huggingface/hub). You should set the environment variable TRANSFORMERS_CACHE to a writable directory.
-web-1  | /usr/local/lib/python3.10/site-packages/huggingface_hub/file_download.py:896: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
-web-1  |   warnings.warn(
-web-1  | INFO:     Started server process [1]
-web-1  | INFO:     Waiting for application startup.
-web-1  | INFO:     Application startup complete.
-web-1  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-web-1  | Загрузка модели для генерации контента: microsoft/phi-2
-web-1  | Ошибка при загрузке модели для генерации контента: [Errno 13] Permission denied: '/home/appuser'
-web-1  | Будет использоваться заглушка вместо модели
-web-1  | Загрузка модели для генерации кода: Xenova/distilgpt2
-web-1  | Ошибка при загрузке модели для генерации кода: [Errno 13] Permission denied: '/home/appuser'
-web-1  | Будет использоваться заглушка вместо модели
-web-1  | INFO:     192.168.65.1:47073 - "GET /docs HTTP/1.1" 200 OK
-web-1  | INFO:     192.168.65.1:47073 - "GET /openapi.json HTTP/1.1" 200 OK
+web-1  | Traceback (most recent call last):
+web-1  |   File "/usr/local/bin/uvicorn", line 8, in <module>
+web-1  |     sys.exit(main())
+web-1  |   File "/usr/local/lib/python3.10/site-packages/click/core.py", line 1161, in __call__
+web-1  |     return self.main(*args, **kwargs)
+web-1  |   File "/usr/local/lib/python3.10/site-packages/click/core.py", line 1082, in main
+web-1  |     rv = self.invoke(ctx)
+web-1  |   File "/usr/local/lib/python3.10/site-packages/click/core.py", line 1443, in invoke
+web-1  |     return ctx.invoke(self.callback, **ctx.params)
+web-1  |   File "/usr/local/lib/python3.10/site-packages/click/core.py", line 788, in invoke
+web-1  |     return __callback(*args, **kwargs)
+web-1  |   File "/usr/local/lib/python3.10/site-packages/uvicorn/main.py", line 416, in main
+web-1  |     run(
+web-1  |   File "/usr/local/lib/python3.10/site-packages/uvicorn/main.py", line 587, in run
+web-1  |     server.run()
+web-1  |   File "/usr/local/lib/python3.10/site-packages/uvicorn/server.py", line 61, in run
+web-1  |     return asyncio.run(self.serve(sockets=sockets))
+web-1  |   File "/usr/local/lib/python3.10/asyncio/runners.py", line 44, in run
+web-1  |     return loop.run_until_complete(main)
+web-1  |   File "/usr/local/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+web-1  |     return future.result()
+web-1  |   File "/usr/local/lib/python3.10/site-packages/uvicorn/server.py", line 68, in serve
+web-1  |     config.load()
+web-1  |   File "/usr/local/lib/python3.10/site-packages/uvicorn/config.py", line 467, in load
+web-1  |     self.loaded_app = import_from_string(self.app)
+web-1  |   File "/usr/local/lib/python3.10/site-packages/uvicorn/importer.py", line 21, in import_from_string
+web-1  |     module = importlib.import_module(module_str)
+web-1  |   File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+web-1  |     return _bootstrap._gcd_import(name[level:], package, level)
+web-1  |   File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+web-1  |   File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+web-1  |   File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+web-1  |   File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+web-1  |   File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+web-1  |   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+web-1  |   File "/app/app/main.py", line 6, in <module>
+web-1  |     from app.routers import presentations
+web-1  |   File "/app/app/routers/presentations.py", line 8, in <module>
+web-1  |     from app.services.code_generator import CodeGenerator
+web-1  |   File "/app/app/services/code_generator.py", line 1285
+web-1  |     """
+web-1  |        ^
+web-1  | SyntaxError: f-string expression part cannot include a backslash
+web-1  | There was a problem when trying to write in your cache folder (/home/appuser/.cache/huggingface/hub). You should set the environment variable TRANSFORMERS_CACHE to a writable directory.
+web-1  | Traceback (most recent call last):
+web-1  |   File "/usr/local/bin/uvicorn", line 8, in <module>
+web-1  |     sys.exit(main())
+web-1  |   File "/usr/local/lib/python3.10/site-packages/click/core.py", line 1161, in __call__
+web-1  |     return self.main(*args, **kwargs)
+web-1  |   File "/usr/local/lib/python3.10/site-packages/click/core.py", line 1082, in main
+web-1  |     rv = self.invoke(ctx)
+web-1  |   File "/usr/local/lib/python3.10/site-packages/click/core.py", line 1443, in invoke
+web-1  |     return ctx.invoke(self.callback, **ctx.params)
+web-1  |   File "/usr/local/lib/python3.10/site-packages/click/core.py", line 788, in invoke
+web-1  |     return __callback(*args, **kwargs)
+web-1  |   File "/usr/local/lib/python3.10/site-packages/uvicorn/main.py", line 416, in main
+web-1  |     run(
+web-1  |   File "/usr/local/lib/python3.10/site-packages/uvicorn/main.py", line 587, in run
+web-1  |     server.run()
+web-1  |   File "/usr/local/lib/python3.10/site-packages/uvicorn/server.py", line 61, in run
+web-1  |     return asyncio.run(self.serve(sockets=sockets))
+web-1  |   File "/usr/local/lib/python3.10/asyncio/runners.py", line 44, in run
+web-1  |     return loop.run_until_complete(main)
+web-1  |   File "/usr/local/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+web-1  |     return future.result()
+web-1  |   File "/usr/local/lib/python3.10/site-packages/uvicorn/server.py", line 68, in serve
+web-1  |     config.load()
+web-1  |   File "/usr/local/lib/python3.10/site-packages/uvicorn/config.py", line 467, in load
+web-1  |     self.loaded_app = import_from_string(self.app)
+web-1  |   File "/usr/local/lib/python3.10/site-packages/uvicorn/importer.py", line 21, in import_from_string
+web-1  |     module = importlib.import_module(module_str)
+web-1  |   File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+web-1  |     return _bootstrap._gcd_import(name[level:], package, level)
+web-1  |   File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+web-1  |   File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+web-1  |   File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+web-1  |   File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+web-1  |   File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+web-1  |   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+web-1  |   File "/app/app/main.py", line 6, in <module>
+web-1  |     from app.routers import presentations
+web-1  |   File "/app/app/routers/presentations.py", line 8, in <module>
+web-1  |     from app.services.code_generator import CodeGenerator
+web-1  |   File "/app/app/services/code_generator.py", line 1285
+web-1  |     """
+web-1  |        ^
+web-1  | SyntaxError: f-string expression part cannot include a backslash
