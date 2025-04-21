@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - model_cache:/root/.cache/huggingface
+    environment:
+      - DATABASE_URL=postgresql://meirman_is_creator:@db/icreator
+      - CONTENT_MODEL=mistralai/Mistral-7B-Instruct-v0.2
+      - CODE_MODEL=deepseek-ai/deepseek-coder-6.7b-instruct
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=meirman_is_creator
+      - POSTGRES_PASSWORD=
+      - POSTGRES_DB=icreator
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
+  model_cache:
