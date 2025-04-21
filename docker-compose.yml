@@ -1,20 +1,25 @@
-version: '3.8'
-
 services:
   web:
-    build: .
+    build:
+      context: .
     ports:
       - "8000:8000"
     volumes:
       - .:/app
-      - model_cache:/root/.cache/huggingface
+      - model_cache:/app/model_cache
     environment:
-      - DATABASE_URL=postgresql://meirman_is_creator:@db/icreator
-      - CONTENT_MODEL=mistralai/Mistral-7B-Instruct-v0.2
-      - CODE_MODEL=deepseek-ai/deepseek-coder-6.7b-instruct
+      - DATABASE_URL=postgresql://meirman_is_creator:password123@db/icreator
+      - CONTENT_MODEL=microsoft/phi-2
+      - CODE_MODEL=Xenova/distilgpt2
+      - CACHE_DIR=/app/model_cache
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 4G  # Ограничение памяти для контейнера
 
   db:
     image: postgres:15
@@ -22,10 +27,16 @@ services:
       - postgres_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=meirman_is_creator
-      - POSTGRES_PASSWORD=
+      - POSTGRES_PASSWORD=password123  # Указываем явный непустой пароль
       - POSTGRES_DB=icreator
     ports:
       - "5432:5432"
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U meirman_is_creator"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres_data:

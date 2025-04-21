@@ -4,10 +4,13 @@ pydantic==2.4.2
 sqlalchemy==2.0.23
 psycopg2-binary==2.9.9
 python-dotenv==1.0.0
-transformers==4.35.0
+transformers==4.36.0
 torch==2.1.0
 numpy<2.0.0  # Принудительно используем NumPy 1.x для совместимости
-huggingface-hub==0.17.3
+huggingface-hub>=0.19.3,<1.0.0  # Обновленная версия для совместимости с transformers
 sentencepiece==0.1.99
 tqdm==4.66.1
 accelerate==0.23.0
+bitsandbytes==0.41.1  # Для квантизации моделей
+safetensors==0.4.0  # Для безопасной работы с весами моделей
+einops==0.7.0  # Для оптимизации тензорных операций

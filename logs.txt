@@ -1,0 +1,15 @@
+web-1  | There was a problem when trying to write in your cache folder (/home/appuser/.cache/huggingface/hub). You should set the environment variable TRANSFORMERS_CACHE to a writable directory.
+web-1  | /usr/local/lib/python3.10/site-packages/huggingface_hub/file_download.py:896: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+web-1  |   warnings.warn(
+web-1  | INFO:     Started server process [1]
+web-1  | INFO:     Waiting for application startup.
+web-1  | INFO:     Application startup complete.
+web-1  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+web-1  | Загрузка модели для генерации контента: microsoft/phi-2
+web-1  | Ошибка при загрузке модели для генерации контента: [Errno 13] Permission denied: '/home/appuser'
+web-1  | Будет использоваться заглушка вместо модели
+web-1  | Загрузка модели для генерации кода: Xenova/distilgpt2
+web-1  | Ошибка при загрузке модели для генерации кода: [Errno 13] Permission denied: '/home/appuser'
+web-1  | Будет использоваться заглушка вместо модели
+web-1  | INFO:     192.168.65.1:47073 - "GET /docs HTTP/1.1" 200 OK
+web-1  | INFO:     192.168.65.1:47073 - "GET /openapi.json HTTP/1.1" 200 OK
