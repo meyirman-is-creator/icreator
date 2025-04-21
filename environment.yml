@@ -1,0 +1,22 @@
+name: presentation-generator
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pytorch=2.1.0
+  - pip:
+    - fastapi==0.104.1
+    - uvicorn==0.24.0
+    - pydantic==2.4.2
+    - sqlalchemy==2.0.23
+    - psycopg2-binary==2.9.9
+    - python-dotenv==1.0.0
+    - transformers==4.35.0
+    - huggingface-hub==0.17.3
+    - sentencepiece==0.1.99
+    - tqdm==4.66.1
+    - bitsandbytes==0.41.1  # Для 8-битной квантизации
+    - accelerate==0.23.0    # Для управления устройствами
